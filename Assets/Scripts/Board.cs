@@ -14,10 +14,9 @@ public class Board : MonoBehaviour
 
     private Vector3 startPos = new Vector3(0, 0, -5);
 
-    void Start()
+    void OnEnable()
     {
         if (player == null) player = GameObject.Find("Player");
-        colliderA.enabled = false;
         transform.position = startPos;
     }
 
@@ -32,22 +31,25 @@ public class Board : MonoBehaviour
             transform.position.y, transform.position.z);
     }
 
-    void DecideRightPath(Answer answer)
+    public void DecideRightPath(Answer answer)
     {
-        if (answer == Answer.A) colliderA.enabled = false;
-        else colliderB.enabled = false;
+        if (answer == Answer.A)
+        {
+            colliderA.enabled = false;
+            colliderB.enabled = true;
+        }
+        else
+        {
+            colliderA.enabled = true;
+            colliderB.enabled = false;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void BoardRefresh()
     {
-        if(other.transform.CompareTag("Finish"))
-        {
-            if (player.activeInHierarchy == true)
-                Debug.Log("Win");
-            else Debug.Log("Dead");
-        }
         colliderA.enabled = true;
         colliderB.enabled = true;
         gameObject.SetActive(false);
+        gameObject.transform.position = startPos;
     }
 }

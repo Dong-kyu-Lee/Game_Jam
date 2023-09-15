@@ -36,7 +36,7 @@ public class ProblemMaker : MonoBehaviour
     // 전체 경로 : D:\Unity_Folder\Game_Jam\Assets\Resources\Json\ProblemData.json
     private string path;
     
-    void Awake()
+    void Start()
     {
         path = Application.dataPath + "/Resources/Json/ProblemData.json";
         string problemJsonData = File.ReadAllText(path);
@@ -62,9 +62,20 @@ public class ProblemMaker : MonoBehaviour
             int randomIndex = Random.Range(0, problemList.Count - 1);
             problem = problemList[randomIndex];
             problemList.RemoveAt(randomIndex);
+
+            if (problemList.Count == 0)
+                RefreshProblems();
         }
 
         return problem;
+    }
+
+    void RefreshProblems()
+    {
+        foreach (var item in problemData)
+        {
+            problemList.Add(item);
+        }
     }
 
     void CreateProblemData()

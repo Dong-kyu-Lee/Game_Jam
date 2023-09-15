@@ -4,18 +4,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject board;
-
-    ProblemMaker problemMaker;
-
-    void Start()
+    private static GameManager instance;
+    public static GameManager Instance
     {
-        problemMaker = GetComponent<ProblemMaker>();
+        get
+        {
+            return instance;
+        }
     }
 
-    void Update()
+    [SerializeField]
+    ProblemMaker problemMaker;
+
+    void Awake()
     {
-        
+        Init();
+    }
+
+    static void Init()
+    {
+        if (instance == null)
+        {
+            GameObject go = GameObject.Find("GameManager");
+            if (go == null)
+            {
+                go = new GameObject { name = "GameManager" };
+                go.AddComponent<GameManager>();
+            }
+
+            DontDestroyOnLoad(go);
+            instance = go.GetComponent<GameManager>();
+        }
     }
 }
