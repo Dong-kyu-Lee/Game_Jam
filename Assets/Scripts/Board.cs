@@ -10,7 +10,10 @@ public class Board : MonoBehaviour
     private BoxCollider colliderA;
     [SerializeField]
     private BoxCollider colliderB;
-    public int speed;
+    [SerializeField]
+    private float maxSpeed;
+    [SerializeField]
+    private float speed;
 
     private Vector3 startPos = new Vector3(0, 0, -5);
 
@@ -51,5 +54,12 @@ public class Board : MonoBehaviour
         colliderB.enabled = true;
         gameObject.SetActive(false);
         gameObject.transform.position = startPos;
+    }
+
+    public void EnhanceSpeed(float amount)
+    {
+        if (speed + amount >= maxSpeed)
+            speed = maxSpeed;
+        else speed += amount;
     }
 }

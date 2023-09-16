@@ -31,14 +31,35 @@ public class ProblemMaker : MonoBehaviour
 {
     [SerializeField]
     Problem[] problemData = null;
+    [SerializeField]
     List<Problem> problemList = new List<Problem>();
 
     // 전체 경로 : D:\Unity_Folder\Game_Jam\Assets\Resources\Json\ProblemData.json
     private string path;
-    
+    private string mathDataPath;
+    private string commonSenseDataPath;
+    private string historyDataPath;
+
     void Start()
     {
-        path = Application.dataPath + "/Resources/Json/ProblemData.json";
+        mathDataPath = Application.dataPath + "/Resources/Json/MathData.json";
+        commonSenseDataPath = Application.dataPath + "/Resources/Json/CommonSenseData.json";
+        historyDataPath = Application.dataPath + "/Resources/Json/HistoryData.json";
+
+        path = null;
+        QuestionKind kind = GameManager.Instance.QuestionKind;
+        switch (kind)
+        {
+            case QuestionKind.Math:
+                { path = mathDataPath; break; }
+            case QuestionKind.History:
+                { path = historyDataPath; break; }
+            case QuestionKind.CommonSense:
+                { path = commonSenseDataPath; break; }
+            default:
+                break;
+        }
+
         string problemJsonData = File.ReadAllText(path);
 
         if (!File.Exists(path)) Debug.LogError("No Data");
@@ -76,6 +97,8 @@ public class ProblemMaker : MonoBehaviour
         {
             problemList.Add(item);
         }
+
+        Debug.Log("Problems refreshed");
     }
 
     void CreateProblemData()
