@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+
     public void SelectQuestionKind(int kind)
     {
         questionKind = (QuestionKind)kind;

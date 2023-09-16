@@ -42,9 +42,9 @@ public class ProblemMaker : MonoBehaviour
 
     void Start()
     {
-        mathDataPath = Application.dataPath + "/Resources/Json/MathData.json";
-        commonSenseDataPath = Application.dataPath + "/Resources/Json/CommonSenseData.json";
-        historyDataPath = Application.dataPath + "/Resources/Json/HistoryData.json";
+        mathDataPath = "Json/MathData";
+        commonSenseDataPath = "Json/CommonSenseData";
+        historyDataPath = "Json/HistoryData";
 
         path = null;
         QuestionKind kind = GameManager.Instance.QuestionKind;
@@ -60,9 +60,9 @@ public class ProblemMaker : MonoBehaviour
                 break;
         }
 
-        string problemJsonData = File.ReadAllText(path);
+        string problemJsonData = Resources.Load<TextAsset>(path).ToString();
 
-        if (!File.Exists(path)) Debug.LogError("No Data");
+        if (problemJsonData == null) Debug.LogError("No Data");
         else
         {
             problemData = JsonUtility.FromJson<Problems>(problemJsonData).problems;
