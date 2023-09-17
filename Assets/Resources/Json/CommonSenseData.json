@@ -1,16 +1,64 @@
-{
+﻿{
   "problems": [
     {
-      "sentence": "",
-      "A": "",
-      "B": "",
+      "sentence": "스폰지밥은 무슨 색?",
+      "A": "노란색",
+      "B": "분홍색",
       "answerWay": 0
     },
     {
-      "sentence": "",
-      "A": "",
-      "B": "",
+      "sentence": "사과는 무슨 맛?",
+      "A": "단맛",
+      "B": "매운맛",
       "answerWay": 0
+    },
+    {
+      "sentence": "우리나라 피겨스케이팅 선수는?",
+      "A": "아사다마오",
+      "B": "김연아",
+      "answerWay": 1
+    },
+    {
+      "sentence": "독도는",
+      "A": "흐른다",
+      "B": "우리땅",
+      "answerWay": 1
+    },
+    {
+      "sentence": "물은 영어로?",
+      "A": "Self",
+      "B": "Water",
+      "answerWay": 1
+    },
+    {
+      "sentence": "1시간은?",
+      "A": "60분",
+      "B": "60초",
+      "answerWay": 0
+    },
+    {
+      "sentence": "미국의 수도는?",
+      "A": "뉴욕",
+      "B": "워싱턴DC",
+      "answerWay": 1
+    },
+    {
+      "sentence": "바늘 가는 데 ",
+      "A": "실 간다",
+      "B": "침 간다",
+      "answerWay": 0
+    },
+    {
+      "sentence": "호주에 사는 동물은?",
+      "A": "캥거루",
+      "B": "북극곰",
+      "answerWay": 0
+    },
+    {
+      "sentence": "가운데 손가락은 다른 말로?",
+      "A": "검지",
+      "B": "증지",
+      "answerWay": 1
     }
   ]
 }
