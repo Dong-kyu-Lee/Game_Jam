@@ -75,7 +75,7 @@ public class TitleUI : MonoBehaviour
     public void SendPlayerDataToGameManager()
     {
         GameManager.Instance.CreateNewPlayer(playerName, playerNumber);
-        GameManager.Instance.ChangeScene("PlayScene");
+
         playerName = "";
         playerNumber = "";
     }
@@ -109,10 +109,13 @@ public class TitleUI : MonoBehaviour
         rankPannel.SetActive(open);
     }
 
-    public void ChangeQuestionKindText()
+    public void ChangeQuestionKind(int kind)
     {
-        QuestionKind kind = GameManager.Instance.QuestionKind;
-        switch (kind)
+        GameManager.Instance.SelectQuestionKind(kind);
+
+        QuestionKind currentkind = GameManager.Instance.CurrentQuestionKind;
+        Debug.Log("TitleUIController : " + currentkind);
+        switch (currentkind)
         {
             case QuestionKind.Math:
                 { questionKindText.text = "¼öÇÐ"; break; }
@@ -130,5 +133,15 @@ public class TitleUI : MonoBehaviour
             playerInfoPopup.activeInHierarchy == false && rankPannel.activeInHierarchy == false)
             return true;
         else return false;
+    }
+
+    public void MovePlayScene()
+    {
+        GameManager.Instance.ChangeScene("PlayScene");
+    }
+
+    public void ExitButton()
+    {
+        Application.Quit();
     }
 }

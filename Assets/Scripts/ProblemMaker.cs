@@ -47,7 +47,7 @@ public class ProblemMaker : MonoBehaviour
         historyDataPath = "Json/HistoryData";
 
         path = null;
-        QuestionKind kind = GameManager.Instance.QuestionKind;
+        QuestionKind kind = GameManager.Instance.CurrentQuestionKind;
         switch (kind)
         {
             case QuestionKind.Math:

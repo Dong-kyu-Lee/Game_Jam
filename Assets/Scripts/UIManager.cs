@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI bigScoreText;
 
-    void Awake()
+    void Start()
     {
         Init();
     }
@@ -75,5 +75,11 @@ public class UIManager : MonoBehaviour
     public void BigScoreTextActive()
     {
         bigScoreText.gameObject.SetActive(true);
+    }
+
+    public void MoveTitleScene()
+    {
+        RefreshScore(0);
+        GameManager.Instance.ChangeScene("Title");
     }
 }

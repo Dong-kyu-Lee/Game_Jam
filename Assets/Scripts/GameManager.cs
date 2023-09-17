@@ -27,14 +27,16 @@ public class GameManager : MonoBehaviour
     {
         get
         {
+            Init();
             return instance;
         }
     }
 
     PlayerInfo currentPlayer;
 
-    private QuestionKind questionKind;
-    public QuestionKind QuestionKind { get => questionKind; }
+    [SerializeField]
+    private QuestionKind currentQuestionKind;
+    public QuestionKind CurrentQuestionKind { get => currentQuestionKind; }
 
     void Awake()
     {
@@ -57,14 +59,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ExitButton()
-    {
-        Application.Quit();
-    }
-
     public void SelectQuestionKind(int kind)
     {
-        questionKind = (QuestionKind)kind;
+        currentQuestionKind = (QuestionKind)kind;
+        Debug.Log("Kind is " + currentQuestionKind);
+        Debug.Log("Kind is " + CurrentQuestionKind);
     }
 
     public void CreateNewPlayer(string name, string number)
@@ -96,5 +95,8 @@ public class GameManager : MonoBehaviour
                 currentPlayer.playerScore);
     }
 
-    
+    public void GameOver()
+    {
+        currentPlayer = null;
+    }
 }
