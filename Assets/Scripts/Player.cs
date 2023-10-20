@@ -14,7 +14,15 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
+    {
+        if(Input.GetButtonUp("Horizontal"))
+        {
+            rigid.velocity = Vector3.zero;
+        }
+    }
+
+    void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
 
@@ -22,6 +30,11 @@ public class Player : MonoBehaviour
         {
             Vector3 direction = new Vector3(0, 0, h).normalized;
             rigid.AddForce(direction * speed * Time.deltaTime, ForceMode.Impulse);
+            
+            if (h < 0.1f && h > -0.1f)
+            {
+                rigid.AddForce(-1 * rigid.velocity * Time.deltaTime, ForceMode.Impulse);
+            }
         }
     }
 
